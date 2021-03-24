@@ -18,9 +18,9 @@ A wide range of games are using dialog systems as part of the gameplay experienc
 
 | Name             | Description                                                  | Image                                                        |
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| Witcher 3        | A dialog system with branching choices, voice lines and game state consequences. | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/witcher.jpg?raw=true" style="zoom:40%;" /> |
-| Persona 5        | A dialog system with branching choices, game state consequences and game context (character mood, time of day...). | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/persona.jpg?raw=true" style="zoom:25%;" /> |
-| The Walking Dead | A fully voiced visual novel in which the gameplay consists in dialog and its consequences. | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/twd.jpg?raw=true" style="zoom:25%;" /> |
+| Witcher 3        | A dialog system with branching choices, voice lines and game state consequences. | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/witcher.jpg?raw=true" style="zoom:100%;" /> |
+| Persona 5        | A dialog system with branching choices, game state consequences and game context (character mood, time of day...). | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/persona.jpg?raw=true" style="zoom:100%;" /> |
+| The Walking Dead | A fully voiced visual novel in which the gameplay consists in dialog and its consequences. | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/twd.jpg?raw=true" style="zoom:100%;" /> |
 
 ### Procedural models
 
@@ -80,6 +80,8 @@ On the file system side, the XML format will be used to store dialog data. Since
 
 The type of each node will be stored in the ````DialogNode```` struct in order to be able to execute different behaviors for each of them. The attributes defined above will be stored in a dictionary.
 
+![](https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/tree.png?raw=true)
+
 ### Traversing the tree
 
 Once the tree is defined and loaded from file it's a simple case of running a depth first search in order to show the lines in the correct order. The only special consideration to take into account is that only one of the children of ````options```` nodes should be explored, depending on the user's selection. To aid us in this process, each node will have a ````Next()```` function which will give us the next node we should explore from there.
@@ -90,4 +92,20 @@ In order to centralize the processing of dialog trees, we will create a Module t
 - Rendering the current dialog line, if there is one.
 - Processing user keystrokes in order to show the next line or choose the desired option.
 - Storing callback functions and executing them when needed.
+
+
+
+# Possible Improvements
+
+Although the current system is quite capable, there are still some obvious improvements that could be done:
+
+- The callback system is rudimentary. It doesn't allow us to use class functions or pass parameters to those functions.
+- The system does not use context in order to guide the conversation. It would be interesting if the game state could affect what options and responses are shown to the player.
+- The system does not offer a method to use variables within the text. If players were able to set their name dynamically, there would be no way to update its occurrences in text.
+
+# Documentation
+
+[0]: https://en.wikipedia.org/wiki/Dialogue_tree	"Dialogue Tree"
+[1]: https://www.reddit.com/r/truegaming/comments/78vfsa/dialogue_systems_in_games/	"Dialogue systems in games"
+[2]: https://www.youtube.com/watch?v=0hMiPBe_VRc	"Dialogue Systems in Double Fine Games"
 
