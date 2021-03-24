@@ -19,5 +19,5 @@ A wide range of games are using dialog systems as part of the gameplay experienc
 | Name      | Description                                                  | Image                                                        |
 | --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | Witcher 3 | A dialog system with branching choices, voice lines and game state consequences. | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/witcher.jpg?raw=true" style="zoom:40%;" /> |
-|           |                                                              |                                                              |
+| Persona 5 | A dialog system with branching choices, game state consequences and game context (character mood, time of day...). | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/persona.jpg?raw=true" style="zoom:25%;" /> |
 
