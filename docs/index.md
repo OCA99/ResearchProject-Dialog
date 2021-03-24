@@ -24,8 +24,70 @@ A wide range of games are using dialog systems as part of the gameplay experienc
 
 ### Procedural models
 
-| Name      | Description                                                  | Link                       |
-| --------- | ------------------------------------------------------------ | -------------------------- |
-| Cleverbot | A simple chatbot that will follow your conversation.         | https://www.cleverbot.com/ |
-| AIDungeon | A GPT-2 based story telling platform which builds a story around your actions. | https://play.aidungeon.io/ |
+| Name      | Description                                                  | Link                           |
+| --------- | ------------------------------------------------------------ | ------------------------------ |
+| Cleverbot | A simple chatbot that will follow your conversation.         | [](https://www.cleverbot.com/) |
+| AIDungeon | A GPT-2 based story telling platform which builds a story around your actions. | [](https://play.aidungeon.io/) |
+
+
+
+# Selected approach
+
+The objective of my implementation will be to provide a simple way of creating dialog trees which will be loaded into the game on runtime and can be triggered at any time. My system will also include a way to run callback functions on certain lines of dialog in order to modify the game state according to the player's decisions.
+
+The selected approach presents the following challenges:
+
+- What data model should be used to store dialogs in files?
+- What data model should be used to store dialogs on runtime?
+- How can branching be made easy to use?
+- How can we define game state modifications in the dialog file?
+- How can we offer a way to jump to another dialog line at any time?
+
+### Data model
+
+The approach will be to use a symmetrical data model for the files and the runtime so transitioning from one to the other is as easy as possible. Since the data structure is a tree, a ```DialogNode``` struct will be defined to represent the tree nodes. The implementation will be roughly as follows:
+
+````c++
+struct DialogNode {
+	std::vector<DialogNode*>* children;
+
+	DialogNode* prev = nullptr;
+	DialogNode* next = nullptr;
+	DialogNode* parent = nullptr;
+};
+````
+
+As you can see, each node contains references to its children, siblings and parent nodes. This will be used in order to navigate the tree easily.
+
+On the file system side, the XML format will be used to store dialog data. Since XML is a tree based format, the conversion between the two systems will be straightforward. In XML, 5 different types of node will be defined according to their behavior in-game:
+
+- ````dialog````: This node encapsulates a whole dialog tree and serves as document root.
+  - ````id````: This attribute will be used as unique identifier of the dialog tree within the game system.
+- ````options````: This node will be used to define a fork in the dialog tree. It will contain various ```option``` nodes that will define each possible response by the player.
+  - ````speaker````: This attribute will be used to define the character that says the line. It can be used to show an appropriate image, change the color of the text...
+  - ````value````: This attribute contains the actual text that will be shown to the player for this node.
+  - ````id````: This attribute is a unique identifier for this line in order to be able to go back to it using ``goto``.
+  - ````callback````: This attribute is a unique identifier referencing a function to be run when this line is reached.
+- ````option````: This node represents a possible choice a player can make within an ````options```` node. It will contain more nodes within it that will define how the conversation will continue when following this branch.
+  - ````value````: This attribute contains the text that will be shown to the player for the option.
+- ````line````: This node will be used to show a line of text to the player. It cannot contain any nodes since it doesn't define a decision.
+  - ```speaker```: See above.
+  - ```value```: See above.
+  - ````id````: This attribute is a unique identifier for this line in order to be able to go back to it using ``goto``.
+  - ````callback````: See above.
+- ```goto```: This node will be used to jump to another dialog line by using an ``id`` defined on any other node.
+  - ````route````: This attribute contains the ``id`` of the node to jump to.
+
+The type of each node will be stored in the ````DialogNode```` struct in order to be able to execute different behaviors for each of them. The attributes defined above will be stored in a dictionary.
+
+### Traversing the tree
+
+Once the tree is defined and loaded from file it's a simple case of running a depth first search in order to show the lines in the correct order. The only special consideration to take into account is that only one of the children of ````options```` nodes should be explored, depending on the user's selection. To aid us in this process, each node will have a ````Next()```` function which will give us the next node we should explore from there.
+
+In order to centralize the processing of dialog trees, we will create a Module that will have the following responsibilities:
+
+- Storing all loaded dialog trees.
+- Rendering the current dialog line, if there is one.
+- Processing user keystrokes in order to show the next line or choose the desired option.
+- Storing callback functions and executing them when needed.
 
