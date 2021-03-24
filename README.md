@@ -1,29 +1,6 @@
-# {Project Name}
+# Dialog System Research
 
-## Description
+### Description
 
-{project description}
+This is the dialog systems research task for the Project 2 course of the Video Game Design degree at CITM Barcelona. In this repository you will find information on research systems and a C++ implementation of a basic dialog system.
 
-## Key Features
-
- - {Feature01}
- - {Feature02}
- - {Feature03}
- - {Feature04}
- 
-## Controls
-
- - {ControlsScheme}
-
-## Developers
-
- - {Dev01} - {Role(s)}
- - {Dev02} - {Role(s)}
- - {Dev03} - {Role(s)}
- - {Dev04} - {Role(s)}
-
-## License
-
-This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
-
-{AdditionalLicenses}

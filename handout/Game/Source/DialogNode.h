@@ -40,12 +40,12 @@ public:
 	{
 		/* Start TODO 3 */
 
-		if (type == NodeType::OPTION) return parent->Next();
-		if (next != nullptr) return next;
-		if (parent != nullptr) return parent->Next();
-		return nullptr;
+		// If type == OPTION we should move up the tree
+		// If next != nullptr we should move to the next sibling
+		// If parent != nullptr we should move up the tree
+		// If none of the conditions match, we are at the end of the dialog and should return nullptr
 
-		/* END TODO 3 */
+		/* End TODO 3 */
 	}
 
 	NodeType type;

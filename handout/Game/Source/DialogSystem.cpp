@@ -31,12 +31,6 @@ bool DialogSystem::Awake(pugi::xml_node& config)
 
 bool DialogSystem::Start()
 {
-	LoadDialog("test.xml");
-
-	callbacks[std::string("say_hello")] = std::function<void()>(&SayHello);
-
-	StartDialog("TEST");
-
 	return true;
 }
 
@@ -76,6 +70,10 @@ bool DialogSystem::PostUpdate()
 
 void DialogSystem::DrawDialog()
 {
+	/* Start TODO 5 */
+
+	// Improve the dialog rendering system!
+
 	app->render->DrawRectangle(SDL_Rect({ 0, (app->render->camera.h / 3) * 2, app->render->camera.w, app->render->camera.h / 3 }), 255, 255, 255, 255, true, false);
 
 	std::string text = ToUpperCase(currentDialog->attributes->at("value"));
@@ -95,6 +93,8 @@ void DialogSystem::DrawDialog()
 		SDL_Rect selectedRectangle = SDL_Rect({ 20, (app->render->camera.h / 3) * 2 + 30 + (18 * selectedOption), 6, 6 });
 		app->render->DrawRectangle(selectedRectangle, 0, 0, 0, 255, true, false);
 	}
+
+	/* End TODO 5 */
 }
 
 bool DialogSystem::CleanUp()
@@ -121,10 +121,10 @@ bool DialogSystem::LoadDialog(const char* filename)
 
 		/* Start TODO 1 */
 
-		pugi::xml_node dialogRoot = dialogFile.child("dialog");
-		std::string id = dialogRoot.attribute("id").as_string();
-		DialogNode* dialog = ParseDialogXML(dialogRoot);
-		dialogues.insert(std::make_pair(id, dialog));
+		// Get the root of the XML document (the "dialog" node).
+		// Get the id of the dialog from the "id" attribute.
+		// Parse the dialog tree using ParseDialogXML.
+		// Insert the parsed dialog into the "dialogues" dictionary.
 
 		/* End TODO 1 */
 	}
@@ -139,46 +139,23 @@ void DialogSystem::StartDialog(const char* id)
 	NextDialog();
 }
 
-void DialogSystem::EndDialog()
-{
-}
-
 void DialogSystem::NextDialog()
 {
 	/* Start TODO 4 */
 
-	if (currentDialog == nullptr) return;
+	// If currentDialog == nullptr, return.
 
-	if (currentDialog->type == DialogNode::NodeType::DIALOG)
-	{
-		currentDialog = *currentDialog->children->begin();
-	}
-	else if (currentDialog->type == DialogNode::NodeType::OPTIONS)
-	{
-		currentDialog = *currentDialog->children->at(selectedOption)->children->begin();
-	}
-	else
-	{
-		currentDialog = currentDialog->Next();
-	}
+	// If currentDialog->type == DIALOG, set currentDialog to its first child.
+	// Else If currentDialog->type == OPTIONS, set currentDialog to the child at "selectedOption" position. Then set currentDialog to its first child.
+	// Else, set currentDialog to currentDialog->Next()
 
-	selectedOption = 0;
+	// Set selectedOption to 0
 
-	if (currentDialog == nullptr)
-	{
-		EndDialog();
-		return;
-	}
+	// It currentDialog == nullptr, return.
 
-	if (currentDialog->attributes->find("callback") != currentDialog->attributes->end())
-	{
-		callbacks.at(currentDialog->attributes->at("callback"))();
-	}
+	// If currentDialog has a "callback", execute it.
 
-	if (currentDialog->type == DialogNode::NodeType::GOTO) {
-		std::string route = currentDialog->attributes->at("route");
-		currentDialog = nodeRoutes.at(route);
-	}
+	// If currentDialog->type == GOTO, get the attribute "route" and set currentDialog to "nodeRoutes.at(route)"
 
 	/* End TODO 4 */
 }
@@ -189,58 +166,20 @@ DialogNode* DialogSystem::ParseDialogXML(pugi::xml_node currentNode)
 
 	/* Start TODO 2 */
 
-	std::string type = currentNode.name();
-	if (type == "dialog") {}
-	else if (type == "line")
-	{
-		dialogNode->type = DialogNode::NodeType::LINE;
-	}
-	else if (type == "options")
-	{
-		dialogNode->type = DialogNode::NodeType::OPTIONS;
-	}
-	else if (type == "option")
-	{
-		dialogNode->type = DialogNode::NodeType::OPTION;
-	}
-	else if (type == "goto")
-	{
-		dialogNode->type = DialogNode::NodeType::GOTO;
-	}
-	else
-		return nullptr;
-
+	// Get the name of the currentNode.
+	// Set the type of dialogNode according to the name of the node.
 
 	Attributes* attributes = new Attributes();
 
-	pugi::xml_attribute_iterator aIt = currentNode.attributes_begin();
-	for (aIt; aIt != currentNode.attributes_end(); aIt++)
-	{
-		attributes->insert(std::make_pair(aIt->name(), aIt->value()));
-	}
+	// Store all the attributes of the currentNode into the "attributes" dictionary.
 
 	dialogNode->SetAttributes(attributes);
 
-	if (dialogNode->attributes->find("id") != dialogNode->attributes->end())
-	{
-		nodeRoutes.insert(std::make_pair(dialogNode->attributes->at("id"), dialogNode));
-	}
+	// If the "id" attribute exists insert the pair (id, dialogNode) into the "nodeRoutes" dictionary.
 
-	if (dialogNode->type != DialogNode::NodeType::LINE)
-	{
-		pugi::xml_node_iterator cIt = currentNode.begin();
-		for (cIt; cIt != currentNode.end(); cIt++)
-		{
-			DialogNode* child = ParseDialogXML(*cIt);
-			child->parent = dialogNode;
-			if (dialogNode->children->size() != 0)
-			{
-				child->prev = *(dialogNode->children->end() - 1);
-				(*(dialogNode->children->end() - 1))->next = child;
-			}
-			dialogNode->AddChild(child);
-		}
-	}
+
+	// If dialogNode->type != LINE, call ParseDialogXML recursively and add the results to dialogNode->children
+	// Remember to assign the "parent", "next" and "previous" variables!
 
 	/* End TODO 2 */
 
