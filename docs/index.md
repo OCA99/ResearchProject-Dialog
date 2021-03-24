@@ -16,8 +16,8 @@ A wide range of games are using dialog systems as part of the gameplay experienc
 
 ### Dialog Trees
 
-| Name | Description | Image |
-| ---- | ----------- | ----- |
-|      |             |       |
-|      |             |       |
+| Name      | Description                                                  | Image                                                        |
+| --------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Witcher 3 | A dialog system with branching choices, voice lines and game state consequences. | <img src="https://github.com/OCA99/ResearchProject-Dialog/blob/master/docs/images/witcher.jpg?raw=true" style="zoom:40%;" /> |
+|           |                                                              |                                                              |
 
