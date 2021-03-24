@@ -105,7 +105,8 @@ Although the current system is quite capable, there are still some obvious impro
 
 # Documentation
 
-[0]: https://en.wikipedia.org/wiki/Dialogue_tree	"Dialogue Tree"
-[1]: https://www.reddit.com/r/truegaming/comments/78vfsa/dialogue_systems_in_games/	"Dialogue systems in games"
-[2]: https://www.youtube.com/watch?v=0hMiPBe_VRc	"Dialogue Systems in Double Fine Games"
+- Dialogue Tree: [https://en.wikipedia.org/wiki/Dialogue_tree](https://en.wikipedia.org/wiki/Dialogue_tree)
 
+- Dialogue systems in games: [https://www.reddit.com/r/truegaming/comments/78vfsa/dialogue_systems_in_games/](https://www.reddit.com/r/truegaming/comments/78vfsa/dialogue_systems_in_games/)
+
+- Dialogue systems in Double Fine Games: [https://www.youtube.com/watch?v=0hMiPBe_VRc](https://www.youtube.com/watch?v=0hMiPBe_VRc)
