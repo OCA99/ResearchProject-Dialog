@@ -17,4 +17,8 @@
     <resizable value="false"/>
     <fullscreen_window value="false"/>
   </window>
+
+  <dialog>
+    <folder>Assets/Dialog/</folder>
+  </dialog>
 </config>

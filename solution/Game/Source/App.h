@@ -13,6 +13,8 @@ class Render;
 class Textures;
 class Audio;
 class Scene;
+class DialogSystem;
+class Fonts;
 
 class App
 {
@@ -74,6 +76,8 @@ public:
 	Textures* tex;
 	Audio* audio;
 	Scene* scene;
+	DialogSystem* dialog;
+	Fonts* fonts;
 
 private:
 
@@ -82,7 +86,7 @@ private:
 	SString title;
 	SString organization;
 
-	List<Module *> modules;
+	List<Module*> modules;
 
 	// TODO 2: Create new variables from pugui namespace:
 	// a xml_document to store the config file and
