@@ -24,10 +24,10 @@ A wide range of games are using dialog systems as part of the gameplay experienc
 
 ### Procedural models
 
-| Name      | Description                                                  | Link                           |
-| --------- | ------------------------------------------------------------ | ------------------------------ |
-| Cleverbot | A simple chatbot that will follow your conversation.         | [](https://www.cleverbot.com/) |
-| AIDungeon | A GPT-2 based story telling platform which builds a story around your actions. | [](https://play.aidungeon.io/) |
+| Name      | Description                                                  | Link                                    |
+| --------- | ------------------------------------------------------------ | --------------------------------------- |
+| CleverBot | A simple chatbot that will follow your conversation.         | [CleverBot](https://www.cleverbot.com/) |
+| AIDungeon | A GPT-2 based story telling platform which builds a story around your actions. | [AIDungeon](https://play.aidungeon.io/) |
 
 
 
