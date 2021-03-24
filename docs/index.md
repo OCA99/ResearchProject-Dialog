@@ -1,37 +1,23 @@
-## Welcome to GitHub Pages
+# Introduction
 
-You can use the [editor on GitHub](https://github.com/OCA99/ResearchProject-Dialog/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Dialog systems are a gameplay mechanic commonly used in adventure and RP games to allow the player to interact with NPCs and make choices that will affect their experience. Video game genres such as visual novels and dating sims revolve almost entirely around these mechanics.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+The most common type of dialog system is the dialog tree, consisting of branches that represent choices made by the player and nodes representing NPC lines. The tree is a deterministic system which needs to be completely designed from the get-go. Other systems often include procedural generation tools to interpret intent and meaning from the player and to produce coherent responses from the computer.
 
-### Markdown
+### History
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Dialog trees have existed for far longer than video games have. The earliest known dialog tree was presented in [The garden of forking paths](https://en.wikipedia.org/wiki/The_Garden_of_Forking_Paths) by Jorge Luis Borges in 1941, in the form of a short story that allowed the reader to branch their decisions into their respective chapters. Since then, the concept has been transported into the video game world with computers offering more efficient ways to manage large dialog trees.
 
-```markdown
-Syntax highlighted code block
 
-# Header 1
-## Header 2
-### Header 3
 
-- Bulleted
-- List
+# Market study
 
-1. Numbered
-2. List
+A wide range of games are using dialog systems as part of the gameplay experience. In this list, I will include some good examples that use dialog trees as well as some examples that use procedural models.
 
-**Bold** and _Italic_ and `Code` text
+### Dialog Trees
 
-[Link](url) and ![Image](src)
-```
+| Name | Description | Image |
+| ---- | ----------- | ----- |
+|      |             |       |
+|      |             |       |
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/OCA99/ResearchProject-Dialog/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
