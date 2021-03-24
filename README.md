@@ -11,4 +11,4 @@ The objective of my work is to provide an easy and scalable solution for integra
 My name is Oscar Cuatrecasas and I am a student from CITM Barcelona. I am conducting this research project as a required task for the Project 2 course in the Video Game Design and Development Degree.
 
 ### Relevant links
-
+- [Dialogue Tree](https://en.wikipedia.org/wiki/Dialogue_tree)
