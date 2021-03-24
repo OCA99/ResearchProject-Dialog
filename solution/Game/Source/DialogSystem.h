@@ -37,8 +37,6 @@ public:
 
 	void StartDialog(const char* id);
 
-	void EndDialog();
-
 	void NextDialog();
 
 private:

@@ -40,9 +40,13 @@ public:
 	{
 		/* Start TODO 3 */
 
+		// If the node is OPTION we move back to the parent to continue with the next lines.
 		if (type == NodeType::OPTION) return parent->Next();
+		// If "next" exists, we go to next.
 		if (next != nullptr) return next;
+		// If next does not exist, and parent exists, we move to parent.
 		if (parent != nullptr) return parent->Next();
+		// If we get here, it means that the dialog has finished.
 		return nullptr;
 
 		/* END TODO 3 */
